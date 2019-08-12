@@ -1,2 +1,2 @@
 # Sesiones
-Sesiones de clase
+Sesiones de clase pertenecientes al curso de Simulación (UDFJDC). 2019-II
