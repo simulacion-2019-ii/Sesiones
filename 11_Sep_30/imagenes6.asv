@@ -1,0 +1,16 @@
+clc;clear;
+im = imread('casa.jpg');
+% Tarea
+% 1. Construir mosaico de imagen n X m
+% 2. Seleccionar un recuadro aleatorio con promedio de pixeles
+n = 2; % filas de recuadros
+m = 3; % columnas de recuadros
+[a,b,c] = size(im)
+
+fila = floor(a/n)
+columna = floor(b/m)
+im2 = im(1:n*fila,1:m*columna,:);
+
+m = randperm(n*m)
+
+for i=1:n
