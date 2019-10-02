@@ -10,14 +10,14 @@ im = imread('casa.jpg');
 % columnas = 20 (variable)
 
 % imshow(im);
-[a,b,c] = size(im)
+[a,b,c] = size(im);
 fila = 200;
 columna = 300;
 im2 = im;
 % Barrido de filas y columnas de recuadros
 for i = 1:ceil(a/fila)
     for j = 1:ceil(b/columna)
-        num2str([i,j])
+        num2str([i,j]);
         % limite de cada recuadro
         c_ini = (j-1)*columna+1;
         c_fin = j*columna;
@@ -29,7 +29,7 @@ for i = 1:ceil(a/fila)
         if f_fin > a
             f_fin = a;
         end
-        num2str([f_ini,f_fin,c_ini,c_fin])
+        num2str([f_ini,f_fin,c_ini,c_fin]);
         
         m1 = im(f_ini:f_fin,c_ini:c_fin,:);   % capturar el primer recuadro
         [p_r,p_g,p_b] = promedios(m1); % capturar el promedio de cada color por recuadro
