@@ -9,3 +9,11 @@ plot(y)
 [f,c] = size(y)
 t_rep = f/Fs 
 sound(y,Fs);
+
+% Taller:
+% 1. Generar función senoidal amplitud 1 con frec de muestreo Fs 10e3
+% con duración de 1 seg. Adicionar ruido con variación +-b=0.2
+
+% 2. Realizar tratamiento para eliminar ruido
+
+% Plantear procedimiento para reproducir en audio una imagen.
