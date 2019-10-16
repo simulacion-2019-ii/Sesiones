@@ -25,17 +25,15 @@ y3 = suavizar(y2,n); % llamar función de suavizar (filtrado)
 % plot(t,[y2' y3']);  grid;   axis([0 .2, -1.5 1.5]);
 archivo = 'tono01.mp3';
 [y,Fs] = audioread(archivo);
-tiempo = length(y)/Fs;
+tiempo = length(;
 % sound(y3,Fs);
 
-E = abs(fft(y));
+E = abs(fft(y1));
 f = 0:length(E)-1;
 f = f/tiempo;
 plot(f,E);  grid;%   axis([0 .2, -1.5 1.5]);
 disp('Fin')
-[mx,n] = max(E)
-f(n)
-E2 = E(1:floor(length(E)/2));
-E2(n) = 0;
-[mx,n] = max(E2)
-f(n)
+
+% Adelantar
+% Realizar fft(audio)
+% Aplicar fft y graficar, para y1, y2 y y3
