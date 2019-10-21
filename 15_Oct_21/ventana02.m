@@ -58,8 +58,8 @@ t  = -2*pi:dt:2*pi;
 y1 = sinc(t);
 y2 = sin(t);
 y3 = exp(-t).*y2;
-set(handles.slider1,'Min',min(t));
-set(handles.slider1,'Max',max(t));
+set(handles.slider3,'Min',min(t));
+set(handles.slider3,'Max',max(t));
 % This function has no output args, see OutputFcn.
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -185,6 +185,25 @@ end
 
 % --- Executes on slider movement.
 function slider3_Callback(hObject, eventdata, handles)
+global t y1 y2 y3 cont;
+
+if cont == 1
+    plot(t,y1,'LineWidth',3);
+    minimo = min(y1);   maximo = max(y1);
+elseif cont == 2
+    plot(t,y2,'LineWidth',3);
+    minimo = min(y2);   maximo = max(y2);
+else
+    plot(t,y3,'LineWidth',3);
+    minimo = min(y3);   maximo = max(y3);
+end
+x = get(hObject,'Value');
+hold on
+
+plot([x,x],[-1e3,1e3]);
+hold off
+grid;
+axis([min(t),max(t),minimo,maximo]);
 % hObject    handle to slider3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
