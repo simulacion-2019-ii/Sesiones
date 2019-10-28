@@ -22,7 +22,7 @@ function varargout = ventana02(varargin)
 
 % Edit the above text to modify the response to help ventana02
 
-% Last Modified by GUIDE v2.5 21-Oct-2019 07:29:31
+% Last Modified by GUIDE v2.5 28-Oct-2019 06:59:27
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -53,7 +53,7 @@ cont = 1;
 set(handles.edit1,'String',num2str(cont))
 set(handles.slider1,'Value',cont)
 
-dt = 0.1;
+dt = .1;
 t  = -2*pi:dt:2*pi;
 y1 = sinc(t);
 y2 = sin(t);
@@ -187,20 +187,37 @@ end
 function slider3_Callback(hObject, eventdata, handles)
 global t y1 y2 y3 cont;
 
+x = get(hObject,'Value');
+set(handles.edit2,'String',num2str(x));
+tmp = x > t;
+tmp2 = find(tmp == 1);
+indice = max(tmp2);
+
 if cont == 1
     plot(t,y1,'LineWidth',3);
     minimo = min(y1);   maximo = max(y1);
+    %linea = sinc(x);
+    [m,b] = ec_recta([t(indice),t(indice+1)],[y1(indice),y1(indice+1)]) % puntos [x],[y]
+    linea = m*x+b;
 elseif cont == 2
     plot(t,y2,'LineWidth',3);
+    % linea = sin(x);
+    [m,b] = ec_recta([t(indice),t(indice+1)],[y2(indice),y2(indice+1)]) % puntos [x],[y]
+    linea = m*x+b;
     minimo = min(y2);   maximo = max(y2);
 else
     plot(t,y3,'LineWidth',3);
+    %linea = exp(-x).*sin(x);
+    [m,b] = ec_recta([t(indice),t(indice+1)],[y3(indice),y3(indice+1)]) % puntos [x],[y]
+    linea = m*x+b;
     minimo = min(y3);   maximo = max(y3);
 end
-x = get(hObject,'Value');
 hold on
 
 plot([x,x],[-1e3,1e3]);
+% plot([min(t),max(t)],[linea,linea]);
+
+plot([min(t),max(t)],[linea,linea]);
 hold off
 grid;
 axis([min(t),max(t),minimo,maximo]);
@@ -221,4 +238,27 @@ function slider3_CreateFcn(hObject, eventdata, handles)
 % Hint: slider controls usually have a light gray background.
 if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor',[.9 .9 .9]);
+end
+
+
+
+function edit2_Callback(hObject, eventdata, handles)
+% hObject    handle to edit2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit2 as text
+%        str2double(get(hObject,'String')) returns contents of edit2 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function edit2_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
 end
